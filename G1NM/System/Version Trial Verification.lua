@@ -1,0 +1,168 @@
+-- G1NM.engineVersion = 1.263
+
+-- local BNReq
+-- -- BNReq = ""
+
+-- function G1NM.BNReq()
+--     return BNReq or false
+-- end
+
+-- G1NM.BNCur = false
+
+-- local versionType
+-- versionType = ""
+-- -- versionType = "DPR"
+-- -- versionType = "FDK"
+-- -- versionType = "DR"
+-- -- versionType = "FDR"
+-- -- versionType = {"HDH", "WMK"}
+-- -- versionType = {"WMK", "RPD"}
+-- -- versionType = {"FDK", "AWR", "FWR"}
+-- -- versionType = "trial"
+
+-- function G1NM.getVersionType()
+--     return versionType or "trial"
+-- end
+
+-- function G1NM.verificationFailed()
+--     slayingInformationFrame:SetScript("OnUpdate", nil)
+--     slayingInformationFrame:SetScript("OnEvent", nil)
+--     G1SlayingFrame:SetScript("OnUpdate", nil)
+--     for k,v in pairs(G1) do
+--         G1NM[k] = print
+--     end
+-- end
+
+-- local downloadURLChecked
+-- local trialChecking
+-- local trialEnd = 0
+
+-- local function setTrialEnd(file)
+--     downloadURLChecked = true
+--     file = string.match(file, "trialEnd=%d+")
+--     if file then
+--         trialEnd = string.gsub(file, "%D", "")
+--         trialEnd = tonumber(trialEnd)
+--     end
+-- end
+
+-- local function setTrialNil()
+--     downloadURLChecked = true
+--     trialEnd = -math.huge
+-- end
+
+-- DownloadURL("raw.githubusercontent.com", "/g1zstar/G1Version/master/Version.txt", true, setTrialEnd, setTrialNil)
+
+-- local function trialVerification()
+--     local versionTypeTable = {
+--         ["DEATHKNIGHT1"] = "DK B",
+--         ["DEATHKNIGHT2"] = "DK F",
+--         ["DEATHKNIGHT3"] = "DK U",
+--         ["DEMONHUNTER1"] = "DH H",
+--         ["DEMONHUNTER2"] = "DH V",
+--         ["DRUID1"] = "DR B",
+--         ["DRUID2"] = "DR F",
+--         ["DRUID3"] = "DR G",
+--         ["DRUID4"] = "DR R",
+--         ["HUNTER1"] = "H B",
+--         ["HUNTER2"] = "H M",
+--         ["HUNTER3"] = "H S",
+--         ["MAGE1"] = "MG A",
+--         ["MAGE2"] = "MG FI",
+--         ["MAGE3"] = "MG FR",
+--         ["MONK1"] = "MK B",
+--         ["MONK2"] = "MK M",
+--         ["MONK3"] = "MK W",
+--         ["PALADIN1"] = "PD H",
+--         ["PALADIN2"] = "PD P",
+--         ["PALADIN3"] = "PD R",
+--         ["PRIEST1"] = "PR D",
+--         ["PRIEST2"] = "PR H",
+--         ["PRIEST3"] = "PR S",
+--         ["ROGUE1"] = "R A",
+--         ["ROGUE2"] = "R O",
+--         ["ROGUE3"] = "R S",
+--         ["SHAMAN1"] = "S EH",
+--         ["SHAMAN2"] = "S EL",
+--         ["SHAMAN3"] = "S R",
+--         ["WARLOCK1"] = "WL A",
+--         ["WARLOCK2"] = "WL DM",
+--         ["WARLOCK3"] = "WL DS",
+--         ["WARRIOR1"] = "WR A",
+--         ["WARRIOR2"] = "WR F",
+--         ["WARRIOR3"] = "WR P",
+--     }
+--     local addonNameTable = {
+--         "DEATHKNIGHT1",
+--         "DEATHKNIGHT2",
+--         "DEATHKNIGHT3",
+--         "DEMONHUNTER1",
+--         "DEMONHUNTER2",
+--         "DRUID1",
+--         "DRUID2",
+--         "DRUID3",
+--         "DRUID4",
+--         "HUNTER1",
+--         "HUNTER2",
+--         "HUNTER3",
+--         "MAGE1",
+--         "MAGE2",
+--         "MAGE3",
+--         "MONK1",
+--         "MONK2",
+--         "MONK3",
+--         "PALADIN1",
+--         "PALADIN2",
+--         "PALADIN3",
+--         "PRIEST1",
+--         "PRIEST2",
+--         "PRIEST3",
+--         "ROGUE1",
+--         "ROGUE2",
+--         "ROGUE3",
+--         "SHAMAN1",
+--         "SHAMAN2",
+--         "SHAMAN3",
+--         "WARLOCK1",
+--         "WARLOCK2",
+--         "WARLOCK3",
+--         "WARRIOR1",
+--         "WARRIOR2",
+--         "WARRIOR3",
+--     }
+
+--     local weekday, month, day, year = CalendarGetDate()
+--     if not string.match(month, "%d%d") then month = "0"..month end
+--     if not string.match(day, "%d%d") then day = "0"..day end
+--     if tonumber(""..year..month..day) >= trialEnd then
+--         local classI, specI = "", ""
+--         for i = 1, #addonNameTable do
+--             classI = string.match(versionTypeTable[addonNameTable[i]], "^%a+")
+--             specI = string.match(versionTypeTable[addonNameTable[i]], "%a+$")
+--             if G1NM[addonNameTable[i]] and not G1NM.getRotation(classI, specI) then
+--                 G1NM[addonNameTable[i]] = print
+--             end
+--         end
+--     else
+--         print(G1NM.AddonName..": Trialing.")
+--     end
+-- end
+
+-- function G1NM.getRotation(class, spec)
+--     if type(versionType) == "table" then
+--         for i = 1, #versionType do
+--             if versionType[i] == class then return true end
+--             if spec and spec ~= "" and string.match(versionType[i], spec..class) then return true end
+--         end
+--     else
+--         if versionType == class then return true end
+--         if versionType == "" then return true end
+--         if spec and spec ~= "" and string.match(versionType, spec..class) then return true end
+--     end
+--     if not downloadURLChecked then if not trialChecking then C_Timer.After(10, trialVerification); trialChecking = true end return true end
+--     local weekday, month, day, year = CalendarGetDate()
+--     if not string.match(month, "%d%d") then month = "0"..month end
+--     if not string.match(day, "%d%d") then day = "0"..day end
+--     if tonumber(""..year..month..day) < trialEnd then return true end
+--     return false
+-- end

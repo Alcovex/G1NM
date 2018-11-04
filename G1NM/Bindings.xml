@@ -1,0 +1,25 @@
+<Bindings>
+	<!-- General -->
+
+	<Binding name="Toggle Run" description="Toggle G1NM" header="G1NM_General" category="G1NM " default="f">
+		if G1NM then G1NM.Toggle("t") end
+	</Binding>
+
+	<Binding name="Toggle AoE" description="Toggle AoE" category="G1NM " default="shift-f">
+		if G1NM then G1NM.Toggle("aoe") end
+	</Binding>
+
+	<Binding name="Toggle CDs" description="Toggle CDs" category="G1NM " default="alt-f">
+		if G1NM then G1NM.Toggle("cds") end
+	</Binding>
+
+	<Binding name="Toggle Interrupt" description="Toggle Interrupts" category="G1NM ">
+		if G1NM then G1NM.Toggle("i") end
+	</Binding>
+
+	<Binding name="Open Settings" description="Open the G1 Settings" category="G1NM " default="ctrl-f">
+		if G1NM then G1NM.Toggle("o") end
+	</Binding>
+
+	<!-- End General binds -->
+</Bindings>
